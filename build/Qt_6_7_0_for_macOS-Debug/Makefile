@@ -53,9 +53,11 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../../main.cpp \
-		../../mainwindow.cpp moc_mainwindow.cpp
+		../../mainwindow.cpp qrc_img.cpp \
+		moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
+		qrc_img.o \
 		moc_mainwindow.o
 DIST          = /Users/imnort/Qt/6.7.0/macos/mkspecs/features/spec_pre.prf \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/device_config.prf \
@@ -257,6 +259,7 @@ DIST          = /Users/imnort/Qt/6.7.0/macos/mkspecs/features/spec_pre.prf \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/qt_config.prf \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/macx-clang/qmake.conf \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/spec_post.prf \
+		../../.qmake.stash \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/exclusive_builds.prf \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/mac/sdk.prf \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/toolchain.prf \
@@ -296,7 +299,7 @@ TARGET        = CurriculumHelper.app/Contents/MacOS/CurriculumHelper
 EXPORT_QMAKE_MAC_SDK = macosx
 EXPORT_QMAKE_MAC_SDK_VERSION = 14.4
 EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Library/Developer/CommandLineTools
-EXPORT__QMAKE_STASH_ = 
+EXPORT__QMAKE_STASH_ = /Users/imnort/Library/Mobile Documents/com~apple~CloudDocs/大学/大一下/c++/CurriculumHelper/build/Qt_6_7_0_for_macOS-Debug/.qmake.stash
 EXPORT_VALID_ARCHS = x86_64 arm64
 EXPORT_DEFAULT_ARCHS = arm64
 EXPORT_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(if $(ARCHS), $(ARCHS), $(if $(EXPORT_DEFAULT_ARCHS), $(EXPORT_DEFAULT_ARCHS), $(EXPORT_VALID_ARCHS))))
@@ -512,6 +515,7 @@ Makefile: ../../CurriculumHelper.pro /Users/imnort/Qt/6.7.0/macos/mkspecs/macx-c
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/qt_config.prf \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/macx-clang/qmake.conf \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/exclusive_builds.prf \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/mac/sdk.prf \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/toolchain.prf \
@@ -542,6 +546,7 @@ Makefile: ../../CurriculumHelper.pro /Users/imnort/Qt/6.7.0/macos/mkspecs/macx-c
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/yacc.prf \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/lex.prf \
 		../../CurriculumHelper.pro \
+		../../img.qrc \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Resources/QtWidgets.prl \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtGui.framework/Resources/QtGui.prl \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Resources/QtCore.prl
@@ -746,6 +751,7 @@ Makefile: ../../CurriculumHelper.pro /Users/imnort/Qt/6.7.0/macos/mkspecs/macx-c
 /Users/imnort/Qt/6.7.0/macos/mkspecs/features/qt_config.prf:
 /Users/imnort/Qt/6.7.0/macos/mkspecs/macx-clang/qmake.conf:
 /Users/imnort/Qt/6.7.0/macos/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /Users/imnort/Qt/6.7.0/macos/mkspecs/features/exclusive_builds.prf:
 /Users/imnort/Qt/6.7.0/macos/mkspecs/features/mac/sdk.prf:
 /Users/imnort/Qt/6.7.0/macos/mkspecs/features/toolchain.prf:
@@ -776,6 +782,7 @@ Makefile: ../../CurriculumHelper.pro /Users/imnort/Qt/6.7.0/macos/mkspecs/macx-c
 /Users/imnort/Qt/6.7.0/macos/mkspecs/features/yacc.prf:
 /Users/imnort/Qt/6.7.0/macos/mkspecs/features/lex.prf:
 ../../CurriculumHelper.pro:
+../../img.qrc:
 /Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Resources/QtWidgets.prl:
 /Users/imnort/Qt/6.7.0/macos/lib/QtGui.framework/Resources/QtGui.prl:
 /Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Resources/QtCore.prl:
@@ -803,6 +810,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents ../../img.qrc ../../img.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../mainwindow.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../../main.cpp ../../mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../mainwindow.ui $(DISTDIR)/
@@ -815,6 +823,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r CurriculumHelper.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -831,8 +840,17 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_img.cpp qrc_img.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_img.cpp qrc_img.cpp
+qrc_img.cpp: ../../img.qrc \
+		/Users/imnort/Qt/6.7.0/macos/libexec/rcc
+	/Users/imnort/Qt/6.7.0/macos/libexec/rcc -name img --no-zstd ../../img.qrc -o qrc_img.cpp
+
+qrc_img.cpp: ../../img.qrc \
+		/Users/imnort/Qt/6.7.0/macos/libexec/rcc
+	/Users/imnort/Qt/6.7.0/macos/libexec/rcc -name img --no-zstd ../../img.qrc -o qrc_img.cpp
+
 compiler_moc_header_make_all: moc_mainwindow.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp
@@ -861,7 +879,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -869,7 +887,22 @@ main.o: ../../main.cpp ../../mainwindow.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QApplication \
-		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qapplication.h
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qapplication.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/QLocale \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/qlocale.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/QTranslator \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/qtranslator.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QLineEdit \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QHBoxLayout
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
 mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
@@ -877,6 +910,9 @@ mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../../mainwindow.cpp
+
+qrc_img.o: qrc_img.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_img.o qrc_img.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

@@ -126,4 +126,3 @@ void MainWindow::on_underline_triggered(bool underline)
 {
     ui->textEdit->setFontUnderline(underline);
 }
-alsdfjlad

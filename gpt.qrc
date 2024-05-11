@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/gpt">
+        <file>gpt/ChatGPT_logo.svg.png</file>
+    </qresource>
+</RCC>

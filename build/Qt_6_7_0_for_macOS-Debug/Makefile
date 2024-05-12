@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = /Library/Developer/CommandLineTools/usr/bin/clang
 CXX           = /Library/Developer/CommandLineTools/usr/bin/clang++
-DEFINES       = -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=11.0 -Wall -Wextra $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++1z $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=11.0 -Wall -Wextra $(DEFINES)
-INCPATH       = -I../../../CurriculumHelper -I. -I/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers -I/Users/imnort/Qt/6.7.0/macos/lib/QtGui.framework/Headers -I/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Users/imnort/Qt/6.7.0/macos/mkspecs/macx-clang -F/Users/imnort/Qt/6.7.0/macos/lib
+INCPATH       = -I../../../CurriculumHelper -I. -I/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers -I/Users/imnort/Qt/6.7.0/macos/lib/QtGui.framework/Headers -I/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers -I/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Users/imnort/Qt/6.7.0/macos/mkspecs/macx-clang -F/Users/imnort/Qt/6.7.0/macos/lib
 QMAKE         = /Users/imnort/Qt/6.7.0/macos/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = CurriculumHelper1.0.0
 DISTDIR = /Users/imnort/Library/Mobile\ Documents/com~apple~CloudDocs/大学/大一下/c++/CurriculumHelper/build/Qt_6_7_0_for_macOS-Debug/.tmp/CurriculumHelper1.0.0
 LINK          = /Library/Developer/CommandLineTools/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=11.0 -Wl,-rpath,@executable_path/../Frameworks -Wl,-rpath,/Users/imnort/Qt/6.7.0/macos/lib
-LIBS          = $(SUBLIBS) -F/Users/imnort/Qt/6.7.0/macos/lib -framework QtWidgets -framework QtGui -framework AppKit -framework ImageIO -framework Metal -framework QtCore -framework IOKit -framework DiskArbitration -framework AGL -framework OpenGL   
+LIBS          = $(SUBLIBS) -F/Users/imnort/Qt/6.7.0/macos/lib -framework QtWidgets -framework QtGui -framework AppKit -framework ImageIO -framework Metal -framework QtNetwork -framework QtCore -framework IOKit -framework DiskArbitration -framework AGL -framework OpenGL   
 AR            = /Library/Developer/CommandLineTools/usr/bin/ar cq
 RANLIB        = /Library/Developer/CommandLineTools/usr/bin/ranlib -s
 SED           = sed
@@ -53,12 +53,18 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../../main.cpp \
-		../../mainwindow.cpp qrc_img.cpp \
-		moc_mainwindow.cpp
+		../../mainwindow.cpp \
+		../../mytcp.cpp qrc_gpt.cpp \
+		qrc_img.cpp \
+		moc_mainwindow.cpp \
+		moc_mytcp.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
+		mytcp.o \
+		qrc_gpt.o \
 		qrc_img.o \
-		moc_mainwindow.o
+		moc_mainwindow.o \
+		moc_mytcp.o
 DIST          = /Users/imnort/Qt/6.7.0/macos/mkspecs/features/spec_pre.prf \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/device_config.prf \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/common/unix.conf \
@@ -289,8 +295,10 @@ DIST          = /Users/imnort/Qt/6.7.0/macos/mkspecs/features/spec_pre.prf \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/exceptions.prf \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/yacc.prf \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/lex.prf \
-		../../../../CurriculumHelper.pro ../../mainwindow.h ../../main.cpp \
-		../../mainwindow.cpp
+		../../../../CurriculumHelper.pro ../../mainwindow.h \
+		../../mytcp.h ../../main.cpp \
+		../../mainwindow.cpp \
+		../../mytcp.cpp
 QMAKE_TARGET  = CurriculumHelper
 DESTDIR       = 
 TARGET        = CurriculumHelper.app/Contents/MacOS/CurriculumHelper
@@ -546,9 +554,11 @@ Makefile: ../../CurriculumHelper.pro /Users/imnort/Qt/6.7.0/macos/mkspecs/macx-c
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/yacc.prf \
 		/Users/imnort/Qt/6.7.0/macos/mkspecs/features/lex.prf \
 		../../CurriculumHelper.pro \
+		../../gpt.qrc \
 		../../img.qrc \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Resources/QtWidgets.prl \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtGui.framework/Resources/QtGui.prl \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Resources/QtNetwork.prl \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Resources/QtCore.prl
 	$(QMAKE) -o Makefile ../../CurriculumHelper.pro -spec macx-clang CONFIG+=debug CONFIG+=qml_debug
 /Users/imnort/Qt/6.7.0/macos/mkspecs/features/spec_pre.prf:
@@ -782,9 +792,11 @@ Makefile: ../../CurriculumHelper.pro /Users/imnort/Qt/6.7.0/macos/mkspecs/macx-c
 /Users/imnort/Qt/6.7.0/macos/mkspecs/features/yacc.prf:
 /Users/imnort/Qt/6.7.0/macos/mkspecs/features/lex.prf:
 ../../CurriculumHelper.pro:
+../../gpt.qrc:
 ../../img.qrc:
 /Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Resources/QtWidgets.prl:
 /Users/imnort/Qt/6.7.0/macos/lib/QtGui.framework/Resources/QtGui.prl:
+/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Resources/QtNetwork.prl:
 /Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Resources/QtCore.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../../CurriculumHelper.pro -spec macx-clang CONFIG+=debug CONFIG+=qml_debug
@@ -810,9 +822,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../../img.qrc ../../img.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents ../../mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../main.cpp ../../mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../gpt.qrc ../../img.qrc ../../img.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents ../../mainwindow.h ../../mytcp.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../main.cpp ../../mainwindow.cpp ../../mytcp.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../mainwindow.ui $(DISTDIR)/
 
 
@@ -840,25 +852,50 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all: qrc_img.cpp qrc_img.cpp
+compiler_rcc_make_all: qrc_gpt.cpp qrc_img.cpp qrc_img.cpp
 compiler_rcc_clean:
-	-$(DEL_FILE) qrc_img.cpp qrc_img.cpp
-qrc_img.cpp: ../../img.qrc \
+	-$(DEL_FILE) qrc_gpt.cpp qrc_img.cpp qrc_img.cpp
+qrc_gpt.cpp: ../../gpt.qrc \
 		/Users/imnort/Qt/6.7.0/macos/libexec/rcc
-	/Users/imnort/Qt/6.7.0/macos/libexec/rcc -name img --no-zstd ../../img.qrc -o qrc_img.cpp
+	/Users/imnort/Qt/6.7.0/macos/libexec/rcc -name gpt --no-zstd ../../gpt.qrc -o qrc_gpt.cpp
 
 qrc_img.cpp: ../../img.qrc \
 		/Users/imnort/Qt/6.7.0/macos/libexec/rcc
 	/Users/imnort/Qt/6.7.0/macos/libexec/rcc -name img --no-zstd ../../img.qrc -o qrc_img.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp
+qrc_img.cpp: ../../img.qrc \
+		/Users/imnort/Qt/6.7.0/macos/libexec/rcc
+	/Users/imnort/Qt/6.7.0/macos/libexec/rcc -name img --no-zstd ../../img.qrc -o qrc_img.cpp
+
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_mytcp.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_mytcp.cpp
 moc_mainwindow.cpp: ../../mainwindow.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../mytcp.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/QObject \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/qobject.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/QTcpServer \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/QTcpSocket \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		/Users/imnort/Qt/6.7.0/macos/libexec/moc
-	/Users/imnort/Qt/6.7.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/imnort/Qt/6.7.0/macos/mkspecs/macx-clang -I'/Users/imnort/Library/Mobile Documents/com~apple~CloudDocs/大学/大一下/c++/CurriculumHelper' -I/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers -I/Users/imnort/Qt/6.7.0/macos/lib/QtGui.framework/Headers -I/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/imnort/Qt/6.7.0/macos/lib ../../mainwindow.h -o moc_mainwindow.cpp
+	/Users/imnort/Qt/6.7.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/imnort/Qt/6.7.0/macos/mkspecs/macx-clang -I'/Users/imnort/Library/Mobile Documents/com~apple~CloudDocs/大学/大一下/c++/CurriculumHelper' -I/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers -I/Users/imnort/Qt/6.7.0/macos/lib/QtGui.framework/Headers -I/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers -I/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/imnort/Qt/6.7.0/macos/lib ../../mainwindow.h -o moc_mainwindow.cpp
+
+moc_mytcp.cpp: ../../mytcp.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/QObject \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/qobject.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/QTcpServer \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/QTcpSocket \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		/Users/imnort/Qt/6.7.0/macos/libexec/moc
+	/Users/imnort/Qt/6.7.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/imnort/Qt/6.7.0/macos/mkspecs/macx-clang -I'/Users/imnort/Library/Mobile Documents/com~apple~CloudDocs/大学/大一下/c++/CurriculumHelper' -I/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers -I/Users/imnort/Qt/6.7.0/macos/lib/QtGui.framework/Headers -I/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers -I/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/imnort/Qt/6.7.0/macos/lib ../../mytcp.h -o moc_mytcp.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -886,6 +923,15 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean
 main.o: ../../main.cpp ../../mainwindow.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../mytcp.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/QObject \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/qobject.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/QTcpServer \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/QTcpSocket \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qapplication.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/QLocale \
@@ -900,22 +946,56 @@ main.o: ../../main.cpp ../../mainwindow.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qboxlayout.h \
-		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QHBoxLayout
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
 mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		ui_mainwindow.h
+		../../mytcp.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/QObject \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/qobject.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/QTcpServer \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/QTcpSocket \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		ui_mainwindow.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/QDebug \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QFileDialog \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QMessageBox \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QFontDialog \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qfontdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../../mainwindow.cpp
+
+mytcp.o: ../../mytcp.cpp ../../mytcp.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/QObject \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/qobject.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/QTcpServer \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/QTcpSocket \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/QHostAddress \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/qhostaddress.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mytcp.o ../../mytcp.cpp
+
+qrc_gpt.o: qrc_gpt.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_gpt.o qrc_gpt.cpp
 
 qrc_img.o: qrc_img.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_img.o qrc_img.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_mytcp.o: moc_mytcp.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mytcp.o moc_mytcp.cpp
 
 ####### Install
 

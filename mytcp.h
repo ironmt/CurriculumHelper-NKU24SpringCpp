@@ -20,11 +20,12 @@ private:
     void init_server();
     //close
     void close_server();
-    //update server
-    void update_state();
 
 signals:
     void recv_chatgpt(const QString &text);
+
+public slots:
+    void send_to_gpt(const QString &text);
 
 private:
     QTcpServer *server;

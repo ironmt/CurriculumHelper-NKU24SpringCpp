@@ -34,6 +34,7 @@ public:
     QAction *bold;
     QAction *italic;
     QAction *underline;
+    QAction *cochatlot;
     QWidget *centralwidget;
     QTextEdit *textEdit;
     QMenuBar *menubar;
@@ -105,11 +106,20 @@ public:
         icon8.addFile(QString::fromUtf8(":/ img/img/underline.png"), QSize(), QIcon::Normal, QIcon::Off);
         underline->setIcon(icon8);
         underline->setMenuRole(QAction::NoRole);
+        cochatlot = new QAction(MainWindow);
+        cochatlot->setObjectName("cochatlot");
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8(":/gpt/gpt/ChatGPT_logo.svg.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cochatlot->setIcon(icon9);
+        cochatlot->setMenuRole(QAction::NoRole);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         textEdit = new QTextEdit(centralwidget);
         textEdit->setObjectName("textEdit");
         textEdit->setGeometry(QRect(130, 10, 461, 351));
+        QFont font1;
+        font1.setFamilies({QString::fromUtf8(".AppleSystemUIFont")});
+        textEdit->setFont(font1);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -142,6 +152,8 @@ public:
         toolBar->addAction(open_note);
         toolBar->addAction(save_note);
         toolBar->addAction(save_as);
+        toolBar->addSeparator();
+        toolBar->addAction(cochatlot);
         toolBar->addSeparator();
         toolBar->addAction(font);
         toolBar->addAction(undo);
@@ -182,6 +194,10 @@ public:
         bold->setText(QCoreApplication::translate("MainWindow", "\345\212\240\347\262\227", nullptr));
         italic->setText(QCoreApplication::translate("MainWindow", "\346\226\234\344\275\223", nullptr));
         underline->setText(QCoreApplication::translate("MainWindow", "\344\270\213\345\210\222\347\272\277", nullptr));
+        cochatlot->setText(QCoreApplication::translate("MainWindow", "CoChatlot", nullptr));
+#if QT_CONFIG(shortcut)
+        cochatlot->setShortcut(QCoreApplication::translate("MainWindow", "Meta+I", nullptr));
+#endif // QT_CONFIG(shortcut)
         menu->setTitle(QCoreApplication::translate("MainWindow", "\346\226\207\344\273\266", nullptr));
         menu_2->setTitle(QCoreApplication::translate("MainWindow", "\347\274\226\350\276\221", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));

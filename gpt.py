@@ -1,40 +1,90 @@
 import socket
-import openai
 
-# 初始化 OpenAI 客户端
-openai.api_key = 'your-openai-api-key'
+import json
+import requests
+import sys
+from requests.auth import HTTPBasicAuth
+import time
+from zhipuai import ZhipuAI
 
-def chat_with_gpt(text):
-    """ 使用 ChatGPT 生成回复 """
-    response = openai.Completion.create(
-        engine="text-davinci-002",  # 根据需要选择合适的模型
-        prompt=text,
-        max_tokens=150
+RETRIES = 25
+MAX_TOKENS = 1024 #最长生成长度
+BETA_URL = "http://43.163.219.59:8001/beta"
+MODEL = "gpt-3.5-turbo-1106"
+#backoff.on_exception(backoff.expo, (TypeError, KeyError, JSONDecodeError, ReadTimeout, ConnectionError, ConnectTimeout), max_tries=RETRIES)
+
+def generate_answer(contexts, model=MODEL, temperature=0):
+    """
+    context: str
+    """
+    print("question context: ")
+    print(contexts)
+    data = {
+        "model": model,
+        "messages": contexts, # 格式需要为[..., {'role': 'user', 'content': '询问内容'}] 
+        "max_tokens": MAX_TOKENS,
+        "temperature": temperature,
+        #"top_p": 1,
+        #"frequency_penalty": 0.0,
+        #"presence_penalty": 0.0,
+        #"stop": stop
+    }
+    data = json.dumps(data)
+    completion = requests.post(url=BETA_URL, data=data, auth=HTTPBasicAuth(username="",password=""), timeout=300).text
+    # print(completion)
+    completion = json.loads(completion)
+    # print(completion)
+    # print()
+    if 'usage' not in completion:
+        raise KeyError('usage')
+#    return completion["choices"][0]["message"]["content"], completion["usage"]["prompt_tokens"], completion["usage"]["completion_tokens"] #返回的依次是回复内容、输入的token数量，生成的的token数量
+    return completion["choices"][0]["message"]["content"]
+
+# print(generate_answer([{'role': 'user', 'content': '你是copilot，模仿copilot补全我的笔记，你的回答内容应当可以直接连接在我的问题后面，语言逻辑很自然。不用重复我的问题，给出专家级回答。我的笔记内容：供需曲线的定义是'}]))
+
+def gene_zhipu_response(contexts):
+    client = ZhipuAI(api_key="79e87f391b89381f49e9d0d8f8dd380d.TKNWeKdp4G3R7yzz") # 请填写您自己的APIKey
+    response = client.chat.completions.create(
+        model="glm-4",  # 填写需要调用的模型名称
+        messages=[
+            {"role": "user", "content": "你是copilot，模仿copilot补全我的笔记。不用重复我的问题，不要给出多余的询问和请求和指导，只是写一份完美的笔记。给出专家级回答，我是一名大一学生。你的回答内容应当直接连接在我的问题后面，语言逻辑自然。我的笔记内容："},
+            {"role": "user", "content": contexts},
+        ],
     )
-    return response.choices[0].text.strip()
+    print(response.choices[0].message)
+    return response.choices[0].message.content
 
-def main():
-    host = '127.0.0.1'
-    port = 23333
 
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.bind((host, port))
-        s.listen()
-        print(f"Server listening on {host}:{port}")
+target_host = "127.0.0.1" #服务器端地址
+target_port = 9000  #端口号
 
-        while True:
-            conn, addr = s.accept()
-            with conn:
-                print(f"Connected by {addr}")
-                data = conn.recv(1024).decode('utf-8')
-                if not data:
-                    break
-                print(f"Received: {data}")
+init_str = "你是copilot，模仿copilot补全我的笔记，不用重复我的问题，给出专家级回答。你的回答内容应当直接连接在我的问题后面，语言逻辑自然。我的笔记内容："
 
-                # 调用 GPT-3
-                response = chat_with_gpt(data)
-                print(f"Sending: {response}")
-                conn.sendall(response.encode('utf-8'))
+while True:
 
-if __name__ == "__main__":
-    main()
+    client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    client.connect((target_host,target_port)) 
+
+    data = client.recv(1024)
+
+    if not data:
+        break
+    data = data.decode('utf-8')
+    print("data:", data)
+
+    flag = False;
+
+    while flag == False:
+        try:
+            # ans = generate_answer(init_str + data);
+            ans = gene_zhipu_response(data);
+            flag = True;
+        except Exception as e:
+            time.sleep(10)
+            print("error:" + str(e));
+            continue;
+
+    print("ans:" + ans);
+    client.send(ans.encode());
+
+client.close()

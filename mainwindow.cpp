@@ -3,7 +3,8 @@
 #include "QDebug"
 #include "QFileDialog"
 #include "QMessageBox"
-#include "QFontDialog""
+#include "QFontDialog"
+#include "mytcp.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -11,17 +12,21 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setCentralWidget(ui->textEdit);
+    myserver = new MyTcp;
+    connect(this, &MainWindow::sig_send_to_gpt, myserver, &MyTcp::send_to_gpt);
+    connect(myserver, &MyTcp::recv_chatgpt, this, &MainWindow::update_note);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete myserver;
 }
 
 //新建笔记
 void MainWindow::on_new_note_triggered()
 {
-    qDebug()<<"yazi";
+    // qDebug()<<"yazi";
     currentFile.clear();
     ui->textEdit->setText("");
 }
@@ -126,3 +131,26 @@ void MainWindow::on_underline_triggered(bool underline)
 {
     ui->textEdit->setFontUnderline(underline);
 }
+
+//gpt按钮
+void MainWindow::on_cochatlot_triggered()
+{
+    QString selected_text = ui->textEdit->textCursor().selectedText();
+    if (!selected_text.isEmpty())
+    {
+        emit sig_send_to_gpt(selected_text);
+        // qDebug() << "hi";
+    }
+    else
+    {
+        QMessageBox::warning(this, "警告", "没有选中任何文本");
+    }
+}
+
+void MainWindow::update_note(const QString &text)
+ {
+    QTextCursor cursor = ui->textEdit->textCursor();
+    cursor.insertText(text);
+    ui->textEdit->setTextCursor(cursor);
+     qDebug() << text;
+ }

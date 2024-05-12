@@ -23,6 +23,11 @@
       <height>351</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>.AppleSystemUIFont</family>
+     </font>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -72,6 +77,8 @@
    <addaction name="open_note"/>
    <addaction name="save_note"/>
    <addaction name="save_as"/>
+   <addaction name="separator"/>
+   <addaction name="cochatlot"/>
    <addaction name="separator"/>
    <addaction name="font"/>
    <addaction name="undo"/>
@@ -213,9 +220,25 @@
     <enum>QAction::NoRole</enum>
    </property>
   </action>
+  <action name="cochatlot">
+   <property name="icon">
+    <iconset resource="gpt.qrc">
+     <normaloff>:/gpt/gpt/ChatGPT_logo.svg.png</normaloff>:/gpt/gpt/ChatGPT_logo.svg.png</iconset>
+   </property>
+   <property name="text">
+    <string>CoChatlot</string>
+   </property>
+   <property name="shortcut">
+    <string>Meta+I</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="img.qrc"/>
+  <include location="gpt.qrc"/>
  </resources>
  <connections/>
 </ui>

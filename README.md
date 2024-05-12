@@ -6,7 +6,7 @@ CurriculumHelper
 
 比如，你是一个经济系学生，正在记笔记，当你写到“供需曲线的定义”后，懒得抄书了，就可以选中这几个字，并且按下ChatGPT的图标。
 
-<img width="912" alt="1" src="https://github.com/ironmt/CurriculumHelper-NKU24SpringCpp/assets/28005559/b3fb8a80-df28-4811-8b1d-45fb7f56927b">
+<img width="912" alt="1" src="https://github.com/ironmt/CurriculumHelper-NKU24SpringCpp/assets/28005559/7cb410a7-8991-4a72-906b-e89d4be4597d">
 
 然后等待一会，关于“供需曲线的定义便会出现在笔记本上”
 

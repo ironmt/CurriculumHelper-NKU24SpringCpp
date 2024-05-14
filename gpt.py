@@ -6,6 +6,7 @@ import sys
 from requests.auth import HTTPBasicAuth
 import time
 from zhipuai import ZhipuAI
+import os
 
 RETRIES = 25
 MAX_TOKENS = 1024 #最长生成长度
@@ -43,7 +44,7 @@ def generate_answer(contexts, model=MODEL, temperature=0):
 # print(generate_answer([{'role': 'user', 'content': '你是copilot，模仿copilot补全我的笔记，你的回答内容应当可以直接连接在我的问题后面，语言逻辑很自然。不用重复我的问题，给出专家级回答。我的笔记内容：供需曲线的定义是'}]))
 
 def gene_zhipu_response(contexts):
-    client = ZhipuAI(api_key="79e87f391b89381f49e9d0d8f8dd380d.TKNWeKdp4G3R7yzz") # 请填写您自己的APIKey
+    client = ZhipuAI(api_key=os.getenv("Zhipu_API_KEY")) # API
     response = client.chat.completions.create(
         model="glm-4",  # 填写需要调用的模型名称
         messages=[
@@ -54,11 +55,10 @@ def gene_zhipu_response(contexts):
     print(response.choices[0].message)
     return response.choices[0].message.content
 
-
 target_host = "127.0.0.1" #服务器端地址
 target_port = 9000  #端口号
 
-init_str = "你是copilot，模仿copilot补全我的笔记，不用重复我的问题，给出专家级回答。你的回答内容应当直接连接在我的问题后面，语言逻辑自然。我的笔记内容："
+init_str = "你是copilot，模仿copilot补全我的笔记，不用重复我的问题，给出专家级回答。你的回答内容应当直接连接在我的问题后面，并且只包含文字信息。语言逻辑自然。我的笔记内容："
 
 while True:
 
@@ -69,7 +69,7 @@ while True:
 
     if not data:
         break
-    data = data.decode('utf-8')
+    data = data.decode()
     print("data:", data)
 
     flag = False;
@@ -85,6 +85,7 @@ while True:
             continue;
 
     print("ans:" + ans);
+    ans = "\n" + ans
     client.send(ans.encode());
 
 client.close()

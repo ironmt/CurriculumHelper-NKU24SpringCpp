@@ -55,7 +55,7 @@ void MyTcp::init_server()
             QTcpSocket *socket = server->nextPendingConnection();
             client_list.append(socket);
 
-            qDebug() << "here is a new con";
+            qDebug() << "New connection!";
 
             //收到数据，用update_cochalot发送信号，在mainwindow中设计槽，更新界面上的文本，把chatgpt回传的recv_text显示在窗口
             connect(socket, &QTcpSocket::readyRead, [this, socket]{
@@ -92,7 +92,6 @@ void MyTcp::init_server()
         qDebug() << ("Server Error:"+server->errorString());
     });
 }
-
 
 void MyTcp::close_server()
 {

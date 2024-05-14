@@ -50,7 +50,6 @@ void MainWindow::on_open_note_triggered()
     file.close();
 }
 
-
 void MainWindow::on_save_note_triggered()
 {
     QString fileName;
@@ -76,7 +75,6 @@ void MainWindow::on_save_note_triggered()
     out<<text;
     file.close();
 }
-
 
 void MainWindow::on_font_triggered()
 {
@@ -132,14 +130,13 @@ void MainWindow::on_underline_triggered(bool underline)
     ui->textEdit->setFontUnderline(underline);
 }
 
-//gpt按钮
+//ai按钮
 void MainWindow::on_cochatlot_triggered()
 {
     QString selected_text = ui->textEdit->textCursor().selectedText();
     if (!selected_text.isEmpty())
     {
         emit sig_send_to_gpt(selected_text);
-        // qDebug() << "hi";
     }
     else
     {
@@ -148,9 +145,10 @@ void MainWindow::on_cochatlot_triggered()
 }
 
 void MainWindow::update_note(const QString &text)
- {
+{
     QTextCursor cursor = ui->textEdit->textCursor();
+    cursor.movePosition(QTextCursor::End);
     cursor.insertText(text);
     ui->textEdit->setTextCursor(cursor);
-     qDebug() << text;
+    qDebug() << text;
  }

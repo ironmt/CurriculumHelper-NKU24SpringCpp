@@ -882,6 +882,8 @@ moc_mainwindow.cpp: ../../mainwindow.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/qtcpserver.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/QTcpSocket \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		/Users/imnort/Qt/6.7.0/macos/libexec/moc
 	/Users/imnort/Qt/6.7.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/imnort/Qt/6.7.0/macos/mkspecs/macx-clang -I'/Users/imnort/Library/Mobile Documents/com~apple~CloudDocs/大学/大一下/c++/CurriculumHelper' -I/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers -I/Users/imnort/Qt/6.7.0/macos/lib/QtGui.framework/Headers -I/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers -I/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/imnort/Qt/6.7.0/macos/lib ../../mainwindow.h -o moc_mainwindow.cpp
 
@@ -932,6 +934,8 @@ main.o: ../../main.cpp ../../mainwindow.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/qtcpserver.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/QTcpSocket \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtWidgets.framework/Headers/qapplication.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/QLocale \
@@ -961,6 +965,8 @@ mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/qtcpserver.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/QTcpSocket \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		ui_mainwindow.h \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/QDebug \
 		/Users/imnort/Qt/6.7.0/macos/lib/QtCore.framework/Headers/qdebug.h \

@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: "\2610"; }
+li.checked::marker { content: "\2612"; }
+</style></head><body style=" font-family:'STFangsong'; font-size:18pt; font-weight:300; font-style:normal;">
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">麦克斯韦方程</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">是19世纪的一项伟大发现，被认为是现代物理学的基础支柱。这组方程由英国物理学家詹姆斯·克拉克·麦克斯韦提出，它们描述了电场、磁场与电荷密度、电流密度之间的关系，是一组偏微分方程。</p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">麦克斯韦方程组由四个方程组成：</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">1. 高斯定律：描述电荷如何产生电场。</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">2. 高斯磁定律：论述磁单极子不存在。</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">3. 麦克斯韦-安培定律：描述电流和时变电场怎样产生磁场。</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">4. 法拉第感应定律：描述时变磁场如何产生电场。</p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">这四个方程不仅在理论物理学中具有举足轻重的地位，而且它们推导出了电磁波在真空中以光速传播的结论，从而启发了“光是电磁波”的理论。麦克斯韦方程组和洛伦兹力方程共同构成了经典电磁学的基础方程。</p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">值得注意的是，麦克斯韦最初在1865年提出的方程组包含了20个等式和20个变量。1873年，他尝试用四元数表达这些方程，但未获成功。最终，是奥利弗·赫维赛德和约西亚·吉布斯在1884年以矢量分析的形式重新表达了这些方程，形成了我们现在所使用的数学形式。</p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">麦克斯韦方程的发现，不仅在物理学领域产生了深远的影响，而且对电力科技与电子科技的发展起到了至关重要的作用。从历史的角度来看，这一发现被许多科学家认为是对物理现实认识的一次深刻变革，其重要性甚至超过了某些重大的历史事件，如美国内战。</p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">作为大一学生，理解和掌握麦克斯韦方程不仅有助于深入探索电磁学领域，也是学习现代物理学的重要基石。</p></body></html>

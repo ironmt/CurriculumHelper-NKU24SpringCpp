@@ -13,3 +13,5 @@ CurriculumHelper
 然后等待一会，关于“供需曲线的定义”便会出现在笔记本上
 
 <img width="912" alt="2" src="https://github.com/ironmt/CurriculumHelper-NKU24SpringCpp/assets/28005559/8784e5b8-c3bd-478d-81a3-66e620618651">
+
+运行时，请先运行qt程序，再运行python代码，这样python作为tcp客户端才能连接到服务器端

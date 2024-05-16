@@ -15,5 +15,5 @@ CurriculumHelper
 <img width="912" alt="2" src="https://github.com/ironmt/CurriculumHelper-NKU24SpringCpp/assets/28005559/8784e5b8-c3bd-478d-81a3-66e620618651">
 
 运行时，请先运行qt程序，再运行python代码(gpt.py)，这样python作为tcp客户端才能连接到服务器端
-并且需要将gpy.py中的api_key（图片处）替换成自己的智谱AI API，可以去智谱网站注册后获得。
+并且需要将gpy.py中的api_key（图片处）替换成自己的智谱AI API，可以去智谱网站（https://www.zhipuai.cn）注册后获得。
 <img width="1168" alt="截屏2024-05-15 16 30 52" src="https://github.com/ironmt/CurriculumHelper-NKU24SpringCpp/assets/28005559/0824144a-483b-41f9-8716-3c139f609b9f">

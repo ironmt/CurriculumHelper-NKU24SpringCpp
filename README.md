@@ -17,4 +17,3 @@ CurriculumHelper
 运行时，请先运行qt程序(已打包，CurriculumHelper.exe)，再运行python代码(gpt.py)，这样python作为tcp客户端才能连接到服务器端
 
 注：python程序需要用pip安装对应的库，如果是mac，可以直接运行「gpt执行程序-mac可用」
-<img width="1168" alt="截屏2024-05-15 16 30 52" src="https://github.com/ironmt/CurriculumHelper-NKU24SpringCpp/assets/28005559/0824144a-483b-41f9-8716-3c139f609b9f">
